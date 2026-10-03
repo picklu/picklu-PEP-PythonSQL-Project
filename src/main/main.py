@@ -53,11 +53,16 @@ def main():
 
 # This function will load the users.csv file into the users table, discarding any records with incomplete data
 def load_and_clean_users(file_path):
+    def isValid(row):
+        if len(row) != 2:
+            return False
+        return all(map(lambda x: x.strip(), row))
+
     with open(file_path) as f:
         rows = csv.reader(f)
         next(rows)
         for row in rows:
-            if len(row) == 2 and all(map(lambda x: x.strip(), row)):
+            if isValid(row):
                 cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?, ?)", row)
 
 
