@@ -90,7 +90,7 @@ def write_user_analytics(csv_file_path):
     records = query.fetchall()
 
     with open(csv_file_path, "w") as f:
-        writer = csv.write(f)
+        writer = csv.writer(f)
         writer.writerow(["userId", "avgDuration", "numCalls"])
         write.writerows(records)
 
@@ -106,7 +106,7 @@ def write_ordered_calls(csv_file_path):
     records = query.fetchall()
     
     with open(csv_file_path, "w") as f:
-        writer = csv.write(f)
+        writer = csv.writer(f)
         writer.writerow(["callId", "phoneNumber", "startTime", "endTime", "direction", "userId"])
         writer.writerows(records)
 
